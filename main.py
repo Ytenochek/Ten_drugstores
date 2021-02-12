@@ -55,10 +55,16 @@ else:
                 spn[1][0] = max(spn[1][0], size[1][0])
                 spn[1][1] = max(spn[1][1], size[1][1])
 
-            if "Hours" in place["properties"]["CompanyMetaData"]["Hours"].keys():
-                if place["properties"]["CompanyMetaData"]["Hours"]["Availabilities"][0][
+            if "Hours" in place["properties"]["CompanyMetaData"].keys():
+                if (
                     "TwentyFourHours"
-                ]:
+                    in place["properties"]["CompanyMetaData"]["Hours"][
+                        "Availabilities"
+                    ][0]
+                    and place["properties"]["CompanyMetaData"]["Hours"][
+                        "Availabilities"
+                    ][0]["TwentyFourHours"]
+                ):
                     pt.append(f"{point[0]},{point[1]},pm2dgm")
                 else:
                     pt.append(f"{point[0]},{point[1]},pm2dbm")
